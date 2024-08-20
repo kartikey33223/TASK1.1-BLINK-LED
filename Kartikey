@@ -1,0 +1,37 @@
+int ledPin = 13; // You can change this to the pin you connect the LED to
+int dotLength = 200; // Duration of a dot in milliseconds
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  // Morse code for "Kartikey"
+  sendMorse("-.-");
+  sendMorse(".-");
+  sendMorse(".-.");
+  sendMorse("-");
+  sendMorse("..");
+  sendMorse("-.-");
+  sendMorse(".");
+  sendMorse("-.--");
+
+  // Wait before sending again
+  delay(5000);
+}
+
+void sendMorse(String code) {
+  for (int i = 0; i < code.length(); i++) {
+    if (code[i] == '.') {
+      digitalWrite(ledPin, HIGH);
+      delay(dotLength);
+    } else if (code[i] == '-') {
+      digitalWrite(ledPin, HIGH);
+      delay(dotLength * 3);
+    }
+    digitalWrite(ledPin, LOW);
+    delay(dotLength);
+  }
+  // Space between letters
+  delay(dotLength * 3);
+}
